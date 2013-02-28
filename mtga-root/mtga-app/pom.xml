@@ -3,12 +3,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<artifactId>mtga-root</artifactId>
 		<groupId>mtga</groupId>
+		<artifactId>mtga-root</artifactId>
 		<version>1.0</version>
 	</parent>
 
-	<groupId>mtga</groupId>
 	<artifactId>mtga-app</artifactId>
 	<packaging>pom</packaging>
 
@@ -20,7 +19,7 @@
 
 		<spring.version>3.2.1.RELEASE</spring.version>
 		<cglib.version>2.2.2</cglib.version>
-		
+
 		<!-- VIEW -->
 		<freemarker.version>2.3.14</freemarker.version>
 
