@@ -20,6 +20,8 @@
 		<morphia.version>1.2.2</morphia.version>
 		<spring.data.mongodb.version>1.2.0.RELEASE</spring.data.mongodb.version>
 	  <spring.data.jpa.version>1.3.0.RELEASE</spring.data.jpa.version>
+	  <mysql.connector.version>5.1.23</mysql.connector.version>
+	  <c3p0.version>0.9.1.2</c3p0.version>
 	</properties>
 
 	<build>

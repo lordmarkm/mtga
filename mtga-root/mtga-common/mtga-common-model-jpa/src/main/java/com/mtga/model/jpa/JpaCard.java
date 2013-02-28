@@ -2,6 +2,7 @@ package com.mtga.model.jpa;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -24,9 +25,11 @@ public class JpaCard implements Card {
     @Column(name="name")
     private String name;
     
+    @Embedded
     @Column(name="expansion")
     private JpaExpansion expansion;
     
+    @Embedded
     @Column(name="castingcost")
     private JpaCastingCost castingCost;
     

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.mtga.common.service.CardService;
 import com.mtga.common.utils.Profiles;
@@ -22,6 +23,7 @@ import com.mtga.model.mtg.Expansion;
 
 @Service
 @Profile(Profiles.JPA)
+@EnableTransactionManagement(proxyTargetClass = true)
 @EnableJpaRepositories(basePackages=Repos.JPA_REPOS_PKG)
 public class JpaCardServiceImpl implements CardService {
 

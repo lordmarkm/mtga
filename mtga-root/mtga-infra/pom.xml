@@ -55,6 +55,18 @@
 				<version>${spring.data.jpa.version}</version>
 			</dependency>
 
+			<!-- PERSISTENCE -->
+			<dependency>
+				<groupId>mysql</groupId>
+				<artifactId>mysql-connector-java</artifactId>
+				<version>${mysql.connector.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>c3p0</groupId>
+				<artifactId>c3p0</artifactId>
+				<version>${c3p0.version}</version>
+			</dependency>
+			
 		</dependencies>
 	</dependencyManagement>
 

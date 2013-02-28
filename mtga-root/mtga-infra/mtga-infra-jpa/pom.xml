@@ -35,6 +35,17 @@
 			<artifactId>spring-data-jpa</artifactId>
 		</dependency>
 
+		<!-- PERSISTENCE -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>c3p0</groupId>
+			<artifactId>c3p0</artifactId>
+		</dependency>
+
 	</dependencies>
 
 </project>
