@@ -35,6 +35,13 @@
 				<version>${hibernate.version}</version>
 			</dependency>
 
+			<!-- MONGO -->
+			<dependency>
+				<groupId>com.github.jmkgreen.morphia</groupId>
+				<artifactId>morphia</artifactId>
+				<version>${morphia.version}</version>
+			</dependency>
+
 		</dependencies>
 	</dependencyManagement>
 </project>
