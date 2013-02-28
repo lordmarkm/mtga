@@ -6,5 +6,6 @@
   <packaging>pom</packaging>
   <modules>
   	<module>mtga-infra</module>
+  	<module>mtga-common</module>
   </modules>
 </project>
