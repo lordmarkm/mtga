@@ -15,6 +15,12 @@
 
 	<dependencies>
 
+    <!-- SPRING -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-core</artifactId>
+    </dependency>
+
 		<!-- PROJECT -->
 		<dependency>
 			<groupId>mtga</groupId>

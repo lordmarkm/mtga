@@ -13,11 +13,20 @@
 	<name>MTGA :: Common :: Mongo Models</name>
 
 	<dependencies>
+	
+    <!-- SPRING -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-core</artifactId>
+    </dependency>
+
+    <!-- PROJECT -->
 		<dependency>
 			<groupId>mtga</groupId>
 			<artifactId>mtga-common-model</artifactId>
 		</dependency>
 
+    <!-- MORPHIA -->
 		<dependency>
 			<groupId>com.github.jmkgreen.morphia</groupId>
 			<artifactId>morphia</artifactId>

@@ -6,11 +6,11 @@
         </encoder>
     </appender>
 
-    <logger name="com.baldwin.mtga.web" level="DEBUG">
+    <logger name="com.mtga" level="DEBUG">
         <appender-ref ref="STDOUT"/>
     </logger>
 
-    <logger name="org.springframework.web" level="debug">
+    <logger name="org.springframework.data" level="debug">
         <appender-ref ref="STDOUT"/>
     </logger>
 

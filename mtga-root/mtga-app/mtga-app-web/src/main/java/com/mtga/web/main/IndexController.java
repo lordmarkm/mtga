@@ -26,6 +26,7 @@ public class IndexController {
 	@RequestMapping(value = "debug", method = RequestMethod.GET)
 	public void debug() {
 	    log.debug("Got card service : {}", cards);
+	    cards.findAll();
 	}
 	
 	@RequestMapping(method = RequestMethod.GET)

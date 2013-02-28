@@ -9,4 +9,11 @@
   <artifactId>mtga-common-utils</artifactId>
   <name>MTGA :: Common :: Utils</name>
 
+  <dependencies>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-context</artifactId>
+    </dependency>
+  </dependencies>
+
 </project>

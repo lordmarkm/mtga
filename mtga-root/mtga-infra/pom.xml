@@ -37,12 +37,22 @@
 				<artifactId>mtga-common-model-mongo</artifactId>
 				<version>${project.version}</version>
 			</dependency>
+			<dependency>
+				<groupId>mtga</groupId>
+				<artifactId>mtga-common-model-jpa</artifactId>
+				<version>${project.version}</version>
+			</dependency>
 
 			<!-- SPRING -->
 			<dependency>
 				<groupId>org.springframework.data</groupId>
 				<artifactId>spring-data-mongodb</artifactId>
 				<version>${spring.data.mongodb.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.data</groupId>
+				<artifactId>spring-data-jpa</artifactId>
+				<version>${spring.data.jpa.version}</version>
 			</dependency>
 
 		</dependencies>

@@ -1,31 +1,37 @@
-package com.mtga.model.mongo;
+package com.mtga.model.jpa;
 
-import org.bson.types.ObjectId;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Lob;
+
 import org.springframework.core.style.ToStringCreator;
 
-import com.github.jmkgreen.morphia.annotations.Entity;
-import com.github.jmkgreen.morphia.annotations.Id;
-import com.github.jmkgreen.morphia.annotations.Property;
 import com.mtga.model.mtg.Card;
 import com.mtga.model.mtg.CastingCost;
 import com.mtga.model.mtg.Expansion;
 
-@Entity(value = "cards", noClassnameStored = true)
-public class MongoCard implements Card {
-
-    @Id
-    private ObjectId id;
+@Entity
+public class JpaCard implements Card {
     
-    @Property("name")
+    @Id
+    @GeneratedValue
+    private long id;
+    
+    @Column(name="name")
     private String name;
     
-    @Property(value="exp", concreteClass=MongoExpansion.class)
-    private Expansion expansion;
+    @Column(name="expansion")
+    private JpaExpansion expansion;
     
-    @Property(value="cc", concreteClass=MongoCastingCost.class)
-    private CastingCost castingCost;
+    @Column(name="castingcost")
+    private JpaCastingCost castingCost;
     
-    @Property(value="img")
+    @Lob @Basic(fetch=FetchType.LAZY)
+    @Column(name="img")
     private byte[] image;
 
     @Override
@@ -36,7 +42,15 @@ public class MongoCard implements Card {
             .append("castingCost", castingCost)
             .toString();
     }
-    
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
     }
@@ -45,20 +59,20 @@ public class MongoCard implements Card {
         this.name = name;
     }
 
-    public Expansion getExpansion() {
+    public JpaExpansion getExpansion() {
         return expansion;
     }
 
     public void setExpansion(Expansion expansion) {
-        this.expansion = expansion;
+        this.expansion = (JpaExpansion) expansion;
     }
 
-    public CastingCost getCastingCost() {
+    public JpaCastingCost getCastingCost() {
         return castingCost;
     }
 
     public void setCastingCost(CastingCost castingCost) {
-        this.castingCost = castingCost;
+        this.castingCost = (JpaCastingCost) castingCost;
     }
 
     public byte[] getImage() {
@@ -67,14 +81,6 @@ public class MongoCard implements Card {
 
     public void setImage(byte[] image) {
         this.image = image;
-    }
-
-    public ObjectId getId() {
-        return id;
-    }
-
-    public void setId(ObjectId id) {
-        this.id = id;
     }
     
 }

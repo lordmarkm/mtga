@@ -21,7 +21,11 @@
 		  <groupId>mtga</groupId>
 		  <artifactId>mtga-infra-mongo</artifactId>
 		</dependency>
-
+    <dependency>
+      <groupId>mtga</groupId>
+      <artifactId>mtga-infra-jpa</artifactId>
+    </dependency>
+    
 		<!-- SPRING -->
 		<dependency>
 			<groupId>org.springframework</groupId>

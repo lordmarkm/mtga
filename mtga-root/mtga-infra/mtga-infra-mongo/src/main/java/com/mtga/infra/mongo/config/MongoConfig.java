@@ -5,20 +5,28 @@ import java.net.UnknownHostException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.Profile;
 import org.springframework.data.authentication.UserCredentials;
 import org.springframework.data.mongodb.core.MongoTemplate;
 
 import com.mongodb.Mongo;
-import com.mongodb.MongoURI;
+import com.mtga.common.utils.Profiles;
+import com.mtga.common.utils.Properties;
 
 @Configuration
+@Import(Properties.class)
+@Profile(Profiles.MONGO)
 public class MongoConfig {
 
     @Value("${mongodb.dbname}")
     private String dbName;
     
-    @Value("${mongodb.url}")
-    private String dbUrl;
+    @Value("${mongodb.host}")
+    private String host;
+    
+    @Value("${mongodb.port}")
+    private int port;
     
     @Value("${mongodb.username}")
     private String username;
@@ -32,13 +40,8 @@ public class MongoConfig {
         return template;
     }
 
-    protected MongoURI mongoURI() {
-        MongoURI uri = new MongoURI(dbUrl);
-        return uri;
-    }
-    
     protected Mongo mongo() throws UnknownHostException {
-        Mongo mongo = new Mongo(mongoURI());
+        Mongo mongo = new Mongo(host, port);
         return mongo;
     }
     
