@@ -1,4 +1,4 @@
-package com.baldwin.mtga.web.main;
+package com.mtga.web.main;
 
 import java.security.Principal;
 
@@ -6,16 +6,27 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.mtga.common.service.CardService;
 
 @Controller
 @RequestMapping("/")
 public class IndexController {
 
 	private static Logger log = LoggerFactory.getLogger(IndexController.class);
+	
+	@Autowired
+	private CardService cards;
+	
+	@RequestMapping(value = "debug", method = RequestMethod.GET)
+	public void debug() {
+	    log.debug("Got card service : {}", cards);
+	}
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView index(Principal principal, HttpServletRequest request) {

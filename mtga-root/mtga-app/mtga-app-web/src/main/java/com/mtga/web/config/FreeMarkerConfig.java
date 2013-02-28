@@ -1,4 +1,4 @@
-package com.baldwin.mtga.web.config;
+package com.mtga.web.config;
 
 import javax.annotation.PostConstruct;
 

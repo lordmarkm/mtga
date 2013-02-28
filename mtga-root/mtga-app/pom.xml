@@ -9,7 +9,8 @@
 	</parent>
 
 	<artifactId>mtga-app</artifactId>
-	<packaging>pom</packaging>
+  <name>MTGA :: App</name>
+  <packaging>pom</packaging>
 
 	<modules>
 		<module>mtga-app-web</module>
@@ -27,6 +28,13 @@
 
 	<dependencyManagement>
 		<dependencies>
+
+			<!-- PROJECT -->
+			<dependency>
+				<groupId>mtga</groupId>
+				<artifactId>mtga-common-service</artifactId>
+				<version>${project.version}</version>
+			</dependency>
 
 			<!-- SPRING -->
 			<dependency>

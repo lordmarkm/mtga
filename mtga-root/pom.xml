@@ -5,16 +5,33 @@
 	<artifactId>mtga-root</artifactId>
 	<version>1.0</version>
 	<packaging>pom</packaging>
+	
 	<modules>
 		<module>mtga-common</module>
 		<module>mtga-infra</module>
+    <module>mtga-app</module>
 	</modules>
-	
+
 	<properties>
-	 <project.version>1.0</project.version>
-	 
-	 <spring.version>3.2.1.RELEASE</spring.version>
-	 <hibernate.version>4.1.9.Final</hibernate.version>
-	 <morphia.version>1.2.2</morphia.version>
+		<project.version>1.0</project.version>
+
+		<spring.version>3.2.1.RELEASE</spring.version>
+		<hibernate.version>4.1.9.Final</hibernate.version>
+		<morphia.version>1.2.2</morphia.version>
+		<spring.data.mongodb.version>1.2.0.RELEASE</spring.data.mongodb.version>
 	</properties>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	
 </project>
