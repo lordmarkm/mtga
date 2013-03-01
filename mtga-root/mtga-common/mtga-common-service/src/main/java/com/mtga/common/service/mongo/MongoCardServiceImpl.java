@@ -22,7 +22,7 @@ import com.mtga.model.mtg.Expansion;
 
 @Service
 @Profile(Profiles.MONGO)
-@EnableMongoRepositories(basePackages=Repos.MONGO_REPOS_PKG)
+@EnableMongoRepositories(basePackages = Repos.MONGO_REPOS_PKG)
 public class MongoCardServiceImpl implements CardService {
 
     private static Logger log = LoggerFactory.getLogger(MongoCardServiceImpl.class);

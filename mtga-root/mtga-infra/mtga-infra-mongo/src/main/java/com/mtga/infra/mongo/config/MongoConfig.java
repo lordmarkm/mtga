@@ -2,6 +2,10 @@ package com.mtga.infra.mongo.config;
 
 import java.net.UnknownHostException;
 
+import javax.annotation.PostConstruct;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,6 +23,8 @@ import com.mtga.common.utils.Properties;
 @Profile(Profiles.MONGO)
 public class MongoConfig {
 
+    private static Logger log = LoggerFactory.getLogger(MongoConfig.class);
+    
     @Value("${mongodb.dbname}")
     private String dbName;
     
@@ -33,6 +39,11 @@ public class MongoConfig {
     
     @Value("${mongodb.password}")
     private String password;
+    
+    @PostConstruct
+    public void init() {
+        log.info("Mongo config initialized.");
+    }
     
     @Bean
     public MongoTemplate mongoTemplate() throws UnknownHostException {

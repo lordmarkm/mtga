@@ -18,6 +18,7 @@
 		<module>mtga-common-model-mongo</module>
 		<module>mtga-common-utils</module>
 		<module>mtga-common-service</module>
+		<module>mtga-common-test</module>
 	</modules>
 
 	<dependencyManagement>
@@ -70,6 +71,18 @@
 				<groupId>com.github.jmkgreen.morphia</groupId>
 				<artifactId>morphia</artifactId>
 				<version>${morphia.version}</version>
+			</dependency>
+
+			<!-- TEST -->
+			<dependency>
+				<groupId>org.mockito</groupId>
+				<artifactId>mockito-all</artifactId>
+				<version>${mockito.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>${junit.version}</version>
 			</dependency>
 
 		</dependencies>

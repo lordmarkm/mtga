@@ -1,4 +1,4 @@
-package com.mtga.web.main;
+package com.mtga.web.controller.main;
 
 import java.security.Principal;
 

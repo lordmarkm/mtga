@@ -9,8 +9,8 @@
 	</parent>
 
 	<artifactId>mtga-app</artifactId>
-  <name>MTGA :: App</name>
-  <packaging>pom</packaging>
+	<name>MTGA :: App</name>
+	<packaging>pom</packaging>
 
 	<modules>
 		<module>mtga-app-web</module>
@@ -71,9 +71,16 @@
 			<dependency>
 				<groupId>ch.qos.logback</groupId>
 				<artifactId>logback-classic</artifactId>
-				<version>1.0.9</version>
+				<version>${logback.version}</version>
 			</dependency>
 
+      <!-- TEST -->
+      <dependency>
+        <groupId>mtga</groupId>
+        <artifactId>mtga-common-test</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      
 		</dependencies>
 	</dependencyManagement>
 </project>

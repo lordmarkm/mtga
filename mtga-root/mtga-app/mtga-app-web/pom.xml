@@ -11,7 +11,7 @@
 
 	<artifactId>mtga-app-web</artifactId>
 	<packaging>war</packaging>
-  <name>MTGA :: App :: Web</name>
+	<name>MTGA :: App :: Web</name>
 
 	<dependencies>
 		<!-- PROJECT -->
@@ -44,6 +44,13 @@
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
+		</dependency>
+
+		<!-- TEST -->
+		<dependency>
+			<groupId>mtga</groupId>
+			<artifactId>mtga-common-test</artifactId>
+			<scope>test</scope>
 		</dependency>
 
 		<!-- PROVIDED -->

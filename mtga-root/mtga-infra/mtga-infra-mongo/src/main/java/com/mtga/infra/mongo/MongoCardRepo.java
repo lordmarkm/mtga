@@ -2,13 +2,14 @@ package com.mtga.infra.mongo;
 
 import java.io.Serializable;
 
-import org.springframework.context.annotation.Profile;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 import com.mtga.model.mtg.Card;
-import com.mtga.common.utils.Profiles;
 
-@Profile(Profiles.MONGO)
+/**
+ * No need for @Profile here since that should be controlled by MongoCardServiceImpl
+ * @author mbmartinez
+ */
 public interface MongoCardRepo extends PagingAndSortingRepository<Card, Serializable> {
 
 }

@@ -26,10 +26,10 @@
 		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>
 
-	<!-- 
+	<!-- User MongoDB by default -->
 	<context-param>
 		<param-name>spring.profiles.default</param-name>
 		<param-value>mongo</param-value>
 	</context-param>
- -->
+
 </web-app>
