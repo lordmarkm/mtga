@@ -1,12 +1,36 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <artifactId>mtga-admin</artifactId>
-    <groupId>mtga</groupId>
-    <version>1.0</version>
-  </parent>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<artifactId>mtga-admin</artifactId>
+		<groupId>mtga</groupId>
+		<version>1.0</version>
+	</parent>
 
-  <artifactId>mtga-admin-service</artifactId>
-  <name>MTGA :: Admin :: Service</name>
-  
+	<artifactId>mtga-admin-service</artifactId>
+	<name>MTGA :: Admin :: Service</name>
+
+
+	<dependencies>
+
+		<!-- PROJECT -->
+		<dependency>
+			<groupId>mtga</groupId>
+			<artifactId>mtga-common-service</artifactId>
+		</dependency>
+
+		<!-- TEST -->
+		<dependency>
+			<groupId>mtga</groupId>
+			<artifactId>mtga-common-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+
+	</dependencies>
 </project>

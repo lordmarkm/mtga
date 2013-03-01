@@ -17,8 +17,8 @@
 
 		<!-- PROJECT -->
 		<dependency>
-		  <groupId>mtga</groupId>
-		  <artifactId>mtga-common-utils</artifactId>
+			<groupId>mtga</groupId>
+			<artifactId>mtga-common-utils</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>mtga</groupId>
@@ -33,6 +33,24 @@
 		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-mongodb</artifactId>
+		</dependency>
+
+		<!-- LOGGING -->
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+		</dependency>
+
+		<!-- TEST -->
+		<dependency>
+			<groupId>mtga</groupId>
+			<artifactId>mtga-common-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<scope>test</scope>
 		</dependency>
 
 	</dependencies>

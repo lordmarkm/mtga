@@ -3,6 +3,7 @@ package com.mtga.model.mongo;
 import org.bson.types.ObjectId;
 import org.springframework.core.style.ToStringCreator;
 
+import com.github.jmkgreen.morphia.annotations.Embedded;
 import com.github.jmkgreen.morphia.annotations.Entity;
 import com.github.jmkgreen.morphia.annotations.Id;
 import com.github.jmkgreen.morphia.annotations.Property;
@@ -22,7 +23,7 @@ public class MongoCard implements Card {
     @Property(value="exp", concreteClass=MongoExpansion.class)
     private Expansion expansion;
     
-    @Property(value="cc", concreteClass=MongoCastingCost.class)
+    @Embedded(value="cc", concreteClass=MongoCastingCost.class)
     private CastingCost castingCost;
     
     @Property(value="img")

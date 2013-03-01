@@ -35,7 +35,12 @@
 				<artifactId>mtga-common-service</artifactId>
 				<version>${project.version}</version>
 			</dependency>
-
+			<dependency>
+				<groupId>mtga</groupId>
+				<artifactId>mtga-admin-service</artifactId>
+			  <version>${project.version}</version>
+			</dependency>
+			
 			<!-- SPRING -->
 			<dependency>
 				<groupId>org.springframework</groupId>
@@ -74,13 +79,13 @@
 				<version>${logback.version}</version>
 			</dependency>
 
-      <!-- TEST -->
-      <dependency>
-        <groupId>mtga</groupId>
-        <artifactId>mtga-common-test</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      
+			<!-- TEST -->
+			<dependency>
+				<groupId>mtga</groupId>
+				<artifactId>mtga-common-test</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+
 		</dependencies>
 	</dependencyManagement>
 </project>

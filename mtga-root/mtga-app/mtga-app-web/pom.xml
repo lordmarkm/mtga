@@ -19,7 +19,10 @@
 			<groupId>mtga</groupId>
 			<artifactId>mtga-common-service</artifactId>
 		</dependency>
-
+		<dependency>
+			<groupId>mtga</groupId>
+			<artifactId>mtga-admin-service</artifactId>
+		</dependency>
 		<!-- SPRING -->
 		<dependency>
 			<groupId>org.springframework</groupId>

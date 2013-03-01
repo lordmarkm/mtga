@@ -9,6 +9,6 @@ import com.mtga.common.utils.Profiles;
 import com.mtga.model.mtg.Card;
 
 @Profile(Profiles.JPA)
-public interface JpaCardRepo extends PagingAndSortingRepository<Card, Serializable> {
+public interface JpaCardDao extends PagingAndSortingRepository<Card, Serializable> {
 
 }

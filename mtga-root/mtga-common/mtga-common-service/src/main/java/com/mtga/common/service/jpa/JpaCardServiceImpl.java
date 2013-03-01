@@ -1,5 +1,7 @@
 package com.mtga.common.service.jpa;
 
+import java.util.Collection;
+
 import javax.annotation.PostConstruct;
 
 import org.slf4j.Logger;
@@ -10,10 +12,10 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import com.mtga.common.service.CardService;
+import com.mtga.common.service.CardRepo;
 import com.mtga.common.utils.Profiles;
 import com.mtga.common.utils.Repos;
-import com.mtga.infra.jpa.JpaCardRepo;
+import com.mtga.infra.jpa.JpaCardDao;
 import com.mtga.model.jpa.JpaCard;
 import com.mtga.model.jpa.JpaCastingCost;
 import com.mtga.model.jpa.JpaExpansion;
@@ -25,12 +27,12 @@ import com.mtga.model.mtg.Expansion;
 @Profile(Profiles.JPA)
 @EnableTransactionManagement(proxyTargetClass = true)
 @EnableJpaRepositories(basePackages=Repos.JPA_REPOS_PKG)
-public class JpaCardServiceImpl implements CardService {
+public class JpaCardServiceImpl implements CardRepo {
 
     private static Logger log = LoggerFactory.getLogger(JpaCardServiceImpl.class);
     
     @Autowired
-    private JpaCardRepo cards;
+    private JpaCardDao cards;
     
     @PostConstruct
     public void init() {
@@ -38,22 +40,31 @@ public class JpaCardServiceImpl implements CardService {
     }
     
     @Override
-    public void findAll() {
-        cards.deleteAll();
+    public Card update(Card card) {
+        return cards.save(card);
+    }
+    
+    @Override
+    public Iterable<Card> findAll() {
+        return cards.findAll();
+    }
+
+    @Override
+    public Collection<Card> findByNameLike(String name) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public void delete(Card card) {
+        // TODO Auto-generated method stub
         
-        Card c = new JpaCard();
-        c.setName("Wrath of God");
-        
-        Expansion e = new JpaExpansion();
-        c.setExpansion(e);
-        
-        CastingCost cc = new JpaCastingCost();
-        c.setCastingCost(cc);
-        
-        cards.save(c);
-        
-        log.debug("Found {} objects", cards.count());
-        log.debug("Find all result: {}", cards.findAll());
+    }
+
+    @Override
+    public Card create(String name) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }
