@@ -16,12 +16,7 @@ import com.mtga.common.service.CardRepo;
 import com.mtga.common.utils.Profiles;
 import com.mtga.common.utils.Repos;
 import com.mtga.infra.jpa.JpaCardDao;
-import com.mtga.model.jpa.JpaCard;
-import com.mtga.model.jpa.JpaCastingCost;
-import com.mtga.model.jpa.JpaExpansion;
 import com.mtga.model.mtg.Card;
-import com.mtga.model.mtg.CastingCost;
-import com.mtga.model.mtg.Expansion;
 
 @Service
 @Profile(Profiles.JPA)
@@ -63,6 +58,12 @@ public class JpaCardServiceImpl implements CardRepo {
 
     @Override
     public Card create(String name) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public byte[] getImage(String exp, String name) {
         // TODO Auto-generated method stub
         return null;
     }

@@ -30,6 +30,7 @@
 	  <!-- TEST -->
 	  <junit.version>4.11</junit.version>
 	  <mockito.version>1.8.4</mockito.version>
+	  <commons-io.version>2.4</commons-io.version>
 	</properties>
 
 	<build>

@@ -7,6 +7,8 @@ import com.github.jmkgreen.morphia.annotations.Embedded;
 import com.github.jmkgreen.morphia.annotations.Entity;
 import com.github.jmkgreen.morphia.annotations.Id;
 import com.github.jmkgreen.morphia.annotations.Property;
+import com.github.jmkgreen.morphia.annotations.Reference;
+import com.mtga.model.MtgaImage;
 import com.mtga.model.mtg.Card;
 import com.mtga.model.mtg.CastingCost;
 import com.mtga.model.mtg.Expansion;
@@ -20,14 +22,17 @@ public class MongoCard implements Card {
     @Property("name")
     private String name;
     
-    @Property(value="exp", concreteClass=MongoExpansion.class)
-    private Expansion expansion;
+    @Property("text")
+    private String text;
+    
+    @Property(value="exp")
+    private MongoExpansion expansion;
     
     @Embedded(value="cc", concreteClass=MongoCastingCost.class)
     private CastingCost castingCost;
     
-    @Property(value="img")
-    private byte[] image;
+    @Reference(value="img", lazy=true, concreteClass=MongoMtgaImage.class)
+    private MtgaImage image;
 
     @Override
     public String toString() {
@@ -51,7 +56,7 @@ public class MongoCard implements Card {
     }
 
     public void setExpansion(Expansion expansion) {
-        this.expansion = expansion;
+        this.expansion = (MongoExpansion) expansion;
     }
 
     public CastingCost getCastingCost() {
@@ -62,11 +67,11 @@ public class MongoCard implements Card {
         this.castingCost = castingCost;
     }
 
-    public byte[] getImage() {
+    public MtgaImage getImage() {
         return image;
     }
 
-    public void setImage(byte[] image) {
+    public void setImage(MtgaImage image) {
         this.image = image;
     }
 
@@ -76,6 +81,14 @@ public class MongoCard implements Card {
 
     public void setId(ObjectId id) {
         this.id = id;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
     }
     
 }

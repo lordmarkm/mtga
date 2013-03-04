@@ -37,6 +37,11 @@
 			</dependency>
 			<dependency>
 				<groupId>mtga</groupId>
+				<artifactId>mtga-common-model-mongo</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>mtga</groupId>
 				<artifactId>mtga-infra-mongo</artifactId>
 				<version>${project.version}</version>
 			</dependency>

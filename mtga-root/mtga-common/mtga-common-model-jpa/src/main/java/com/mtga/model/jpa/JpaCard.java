@@ -1,16 +1,16 @@
 package com.mtga.model.jpa;
 
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.springframework.core.style.ToStringCreator;
 
+import com.mtga.model.MtgaImage;
 import com.mtga.model.mtg.Card;
 import com.mtga.model.mtg.CastingCost;
 import com.mtga.model.mtg.Expansion;
@@ -25,6 +25,9 @@ public class JpaCard implements Card {
     @Column(name="name")
     private String name;
     
+    @Column(name="text")
+    private String text;
+    
     @Embedded
     @Column(name="expansion")
     private JpaExpansion expansion;
@@ -33,9 +36,10 @@ public class JpaCard implements Card {
     @Column(name="castingcost")
     private JpaCastingCost castingCost;
     
-    @Lob @Basic(fetch=FetchType.LAZY)
+    @Embedded
     @Column(name="img")
-    private byte[] image;
+    @Fetch(FetchMode.SELECT)
+    private MtgaImage image;
 
     @Override
     public String toString() {
@@ -78,12 +82,20 @@ public class JpaCard implements Card {
         this.castingCost = (JpaCastingCost) castingCost;
     }
 
-    public byte[] getImage() {
+    public MtgaImage getImage() {
         return image;
     }
 
-    public void setImage(byte[] image) {
+    public void setImage(MtgaImage image) {
         this.image = image;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
     }
     
 }

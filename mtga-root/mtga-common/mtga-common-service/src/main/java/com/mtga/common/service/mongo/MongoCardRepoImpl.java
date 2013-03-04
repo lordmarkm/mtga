@@ -60,5 +60,12 @@ public class MongoCardRepoImpl implements CardRepo {
     public void delete(Card card) {
         cards.delete((MongoCard)card);
     }
+
+    @Override
+    public byte[] getImage(String exp, String name) {
+        MongoCard card = cards.getImage(exp, name);
+        log.debug("Got card : {}", card);
+        return card.getImage().getImage();
+    }
     
 }

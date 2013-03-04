@@ -10,7 +10,8 @@ public interface CardRepo {
     //R
     public Iterable<Card> findAll();
     public Iterable<Card> findByNameLike(String name);
-    
+    public byte[] getImage(String exp, String name);
+
     //U
     public Card update(Card card);
     
