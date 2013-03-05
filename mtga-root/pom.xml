@@ -11,6 +11,7 @@
 		<module>mtga-infra</module>
     <module>mtga-app</module>
     <module>mtga-admin</module>
+    <module>mtga-security</module>
 	</modules>
 
 	<properties>
