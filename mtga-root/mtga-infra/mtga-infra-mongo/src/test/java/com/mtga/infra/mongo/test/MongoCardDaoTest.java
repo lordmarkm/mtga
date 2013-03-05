@@ -40,18 +40,6 @@ public class MongoCardDaoTest {
     }
     
     private void insert() throws IOException {
-//        MongoExpansion exp = new MongoExpansion();
-//        exp.setName("Ravnica");
-//        exp.setAbbreviation("RAV");
-//
-//        MongoCastingCost cc = new MongoCastingCost();
-//        cc.setString("1W");
-//        
-//        MongoCard card = new MongoCard();
-//        card.setExpansion(exp);
-//        card.setCastingCost(cc);
-//        card.setName("Pacifism");
-        
         MongoCard card = (MongoCard) DummyCardCreator.wog();
         dao.save(card);
         

@@ -1,3 +1,5 @@
+<#import "/spring.ftl" as spring />
+
 <html>
   <table>
   
@@ -5,7 +7,11 @@
       <tr>
         ${card_index + 1}. ${card.name}
         <ul>
-          <li><img src="/img/${card.expansion.abbreviation}/${card.name}" />
+          
+          <!--
+          <li><img src="<@spring.url '/img/${card.expansion.abbreviation}/${card.name}' />" />
+          -->
+          
           <li>${card.expansion.name} (${card.expansion.abbreviation})
           <li>${card.castingCost.string}
         </ul>

@@ -11,4 +11,14 @@
 	<artifactId>mtga-common-model</artifactId>
 	<name>MTGA :: Common :: Model</name>
 
+	<dependencies>
+
+    <!-- JODA TIME -->
+		<dependency>
+			<groupId>joda-time</groupId>
+			<artifactId>joda-time</artifactId>
+		</dependency>
+
+	</dependencies>
+
 </project>
