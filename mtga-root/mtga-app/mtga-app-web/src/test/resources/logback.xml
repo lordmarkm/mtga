@@ -6,18 +6,8 @@
         </encoder>
     </appender>
 
-    <logger name="com.mtga" level="DEBUG">
-        <appender-ref ref="STDOUT"/>
-    </logger>
-
-    <logger name="org.springframework.data" level="debug">
-        <appender-ref ref="STDOUT"/>
-    </logger>
-
-    <!-- 
-    <root level="INFO">
+    <root level="debug">
        <appender-ref ref="STDOUT" />
     </root>
-     -->
      
 </configuration>

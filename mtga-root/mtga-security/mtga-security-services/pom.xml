@@ -1,14 +1,88 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-  <modelVersion>4.0.0</modelVersion>
+	<modelVersion>4.0.0</modelVersion>
 
-  <parent>
-    <artifactId>mtga-security</artifactId>
-    <groupId>mtga</groupId>
-    <version>1.0</version>
-  </parent>
+	<parent>
+		<artifactId>mtga-security</artifactId>
+		<groupId>mtga</groupId>
+		<version>1.0</version>
+	</parent>
 
-  <artifactId>mtga-security-services</artifactId>
-  <name>MTGA :: Security :: Services</name>
+	<artifactId>mtga-security-services</artifactId>
+	<name>MTGA :: Security :: Services</name>
+
+	<repositories>
+		<!-- This one is for spring-social-security -->
+		<repository>
+			<id>opensourceagility-snapshots</id>
+			<url>http://repo.opensourceagility.com/snapshots</url>
+		</repository>
+		<!-- Next 3 are for spring-social stock -->
+		<repository>
+			<id>org.springframework.maven.release</id>
+			<name>Spring Maven Release Repository</name>
+			<url>http://repo.springsource.org/libs-release-local</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+		<!-- For testing against latest Spring snapshots -->
+		<repository>
+			<id>org.springframework.maven.snapshot</id>
+			<name>Spring Maven Snapshot Repository</name>
+			<url>http://repo.springsource.org/libs-snapshot-local</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+		<!-- For developing against latest Spring milestones -->
+		<repository>
+			<id>org.springframework.maven.milestone</id>
+			<name>Spring Maven Milestone Repository</name>
+			<url>http://repo.springsource.org/libs-milestone-local</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+	<dependencies>
+
+		<!-- PROJECT -->
+		<dependency>
+			<groupId>mtga</groupId>
+			<artifactId>mtga-common-service</artifactId>
+		</dependency>
+
+    <!-- SPRING SECURITY -->
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-web</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-config</artifactId>
+    </dependency>
+    
+		<!-- SPRING SOCIAL + SECURITY -->
+		<dependency>
+			<groupId>org.socialsignin</groupId>
+			<artifactId>spring-social-security</artifactId>
+			<version>1.0.2-SNAPSHOT</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.social</groupId>
+			<artifactId>spring-social-facebook</artifactId>
+			<version>1.0.1.RELEASE</version>
+		</dependency>
+
+	</dependencies>
 
 </project>

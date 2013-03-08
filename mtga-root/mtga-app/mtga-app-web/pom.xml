@@ -23,6 +23,7 @@
 			<groupId>mtga</groupId>
 			<artifactId>mtga-admin-service</artifactId>
 		</dependency>
+
 		<!-- SPRING -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -35,6 +36,17 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context-support</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.ws</groupId>
+			<artifactId>spring-oxm-tiger</artifactId>
+			<version>1.5.4</version>
+		</dependency>
+		
+		<!-- JACKSON -->
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
 		</dependency>
 
 		<!-- FREEMARKER -->

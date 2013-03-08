@@ -1,6 +1,8 @@
 package com.mtga.model.mtg;
 
-public interface Expansion {
+import com.mtga.model.MtgaEntity;
+
+public interface Expansion extends MtgaEntity {
     
     public String getName();
     public void setName(String name);

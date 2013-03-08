@@ -38,9 +38,9 @@
 			<dependency>
 				<groupId>mtga</groupId>
 				<artifactId>mtga-admin-service</artifactId>
-			  <version>${project.version}</version>
+				<version>${project.version}</version>
 			</dependency>
-			
+
 			<!-- SPRING -->
 			<dependency>
 				<groupId>org.springframework</groupId>
@@ -56,6 +56,13 @@
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-context-support</artifactId>
 				<version>${spring.version}</version>
+			</dependency>
+
+			<!-- JACKSON -->
+			<dependency>
+				<groupId>org.codehaus.jackson</groupId>
+				<artifactId>jackson-mapper-asl</artifactId>
+				<version>${jackson.version}</version>
 			</dependency>
 
 			<!-- FREEMARKER -->

@@ -26,6 +26,12 @@
 			<artifactId>mtga-common-model</artifactId>
 		</dependency>
 
+    <!-- JACKSON -->
+    <dependency>
+      <groupId>org.codehaus.jackson</groupId>
+      <artifactId>jackson-mapper-asl</artifactId>
+    </dependency>
+
     <!-- MORPHIA -->
 		<dependency>
 			<groupId>com.github.jmkgreen.morphia</groupId>

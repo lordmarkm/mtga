@@ -1,6 +1,9 @@
 package com.mtga.model.mongo;
 
+import javax.xml.bind.annotation.XmlTransient;
+
 import org.bson.types.ObjectId;
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.springframework.core.style.ToStringCreator;
 
 import com.github.jmkgreen.morphia.annotations.Embedded;
@@ -28,11 +31,11 @@ public class MongoCard implements Card {
     @Property(value="exp")
     private MongoExpansion expansion;
     
-    @Embedded(value="cc", concreteClass=MongoCastingCost.class)
-    private CastingCost castingCost;
+    @Embedded(value="cc")
+    private MongoCastingCost castingCost;
     
-    @Reference(value="img", lazy=true, concreteClass=MongoMtgaImage.class)
-    private MtgaImage image;
+    @Reference(value="img", lazy=true)
+    private MongoMtgaImage image;
 
     @Override
     public String toString() {
@@ -51,30 +54,31 @@ public class MongoCard implements Card {
         this.name = name;
     }
 
-    public Expansion getExpansion() {
+    public MongoExpansion getExpansion() {
         return expansion;
     }
 
-    public void setExpansion(Expansion expansion) {
-        this.expansion = (MongoExpansion) expansion;
+    public void setExpansion(MongoExpansion expansion) {
+        this.expansion = expansion;
     }
 
-    public CastingCost getCastingCost() {
+    public MongoCastingCost getCastingCost() {
         return castingCost;
     }
 
-    public void setCastingCost(CastingCost castingCost) {
+    public void setCastingCost(MongoCastingCost castingCost) {
         this.castingCost = castingCost;
     }
 
-    public MtgaImage getImage() {
+    public MongoMtgaImage getImage() {
         return image;
     }
 
-    public void setImage(MtgaImage image) {
+    public void setImage(MongoMtgaImage image) {
         this.image = image;
     }
 
+    @JsonIgnore
     public ObjectId getId() {
         return id;
     }
@@ -89,6 +93,27 @@ public class MongoCard implements Card {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    @Override
+    @JsonIgnore
+
+    public void setExpansion(Expansion expansion) {
+        this.expansion = (MongoExpansion) expansion;
+    }
+
+    @Override
+    @JsonIgnore
+
+    public void setCastingCost(CastingCost castingCost) {
+        this.castingCost = (MongoCastingCost) castingCost;
+    }
+
+    @Override
+    @JsonIgnore
+
+    public void setImage(MtgaImage image) {
+        this.image = (MongoMtgaImage) image;
     }
     
 }
