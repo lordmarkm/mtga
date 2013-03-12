@@ -7,7 +7,7 @@ public class MongoMtgaImage implements MtgaImage {
     private byte[] image;
     
     @Override
-    public byte[] getImage() {
+    public byte[] toBytes() {
         return image;
     }
 

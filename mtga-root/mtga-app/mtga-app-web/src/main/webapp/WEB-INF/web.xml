@@ -29,7 +29,7 @@
 	<!-- User MongoDB by default -->
 	<context-param>
 		<param-name>spring.profiles.default</param-name>
-		<param-value>mongo</param-value>
+		<param-value>jpa</param-value>
 	</context-param>
 
 </web-app>

@@ -1,5 +1,7 @@
 package com.mtga.model.jpa;
 
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -29,11 +31,12 @@ public class JpaCard implements Card {
     private String text;
     
     @Embedded
-    @Column(name="expansion")
     private JpaExpansion expansion;
     
     @Embedded
-    @Column(name="castingcost")
+    @AttributeOverrides({
+        @AttributeOverride(name="string", column=@Column(name="cc_string"))
+    })
     private JpaCastingCost castingCost;
     
     @Embedded

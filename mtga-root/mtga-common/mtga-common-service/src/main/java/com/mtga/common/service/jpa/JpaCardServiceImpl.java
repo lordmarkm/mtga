@@ -1,5 +1,6 @@
 package com.mtga.common.service.jpa;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.annotation.PostConstruct;
@@ -16,6 +17,9 @@ import com.mtga.common.service.CardRepo;
 import com.mtga.common.utils.Profiles;
 import com.mtga.common.utils.Repos;
 import com.mtga.infra.jpa.JpaCardDao;
+import com.mtga.model.CardCollection;
+import com.mtga.model.jpa.JpaCard;
+import com.mtga.model.jpa.JpaCardCollection;
 import com.mtga.model.mtg.Card;
 
 @Service
@@ -36,24 +40,22 @@ public class JpaCardServiceImpl implements CardRepo {
     
     @Override
     public Card update(Card card) {
-        return cards.save(card);
+        return cards.save((JpaCard)card);
     }
     
     @Override
-    public Iterable<Card> findAll() {
-        return cards.findAll();
+    public Collection<Card> findAll() {
+        return new ArrayList<Card>((Collection<JpaCard>)cards.findAll());
     }
 
     @Override
     public Collection<Card> findByNameLike(String name) {
-        // TODO Auto-generated method stub
-        return null;
+        return new ArrayList<Card>(cards.findByNameLike(name));
     }
 
     @Override
     public void delete(Card card) {
-        // TODO Auto-generated method stub
-        
+        cards.delete((JpaCard)card);
     }
 
     @Override
@@ -64,8 +66,8 @@ public class JpaCardServiceImpl implements CardRepo {
 
     @Override
     public byte[] getImage(String exp, String name) {
-        // TODO Auto-generated method stub
-        return null;
+       JpaCard card = cards.findByNameAndExpansion(name, exp);
+       return card.getImage().toBytes();
     }
 
 }

@@ -45,7 +45,18 @@
 			<groupId>c3p0</groupId>
 			<artifactId>c3p0</artifactId>
 		</dependency>
-
+    
+    <!-- LOGGING -->
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+    </dependency>
+            
+    <!-- TEST -->
+    <dependency>
+      <groupId>mtga</groupId>
+      <artifactId>mtga-common-test</artifactId>
+    </dependency>        
 	</dependencies>
 
 </project>

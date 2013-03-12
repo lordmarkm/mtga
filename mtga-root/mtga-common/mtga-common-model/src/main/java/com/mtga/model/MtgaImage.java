@@ -2,7 +2,7 @@ package com.mtga.model;
 
 public interface MtgaImage {
 
-    public byte[] getImage();
+    public byte[] toBytes();
     public void setImage(byte[] image);
     
 }

@@ -1,46 +1,60 @@
 package com.mtga.model.jpa;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
+
+import org.springframework.core.style.ToStringCreator;
 
 import com.mtga.model.mtg.Expansion;
 
 @Embeddable
 public class JpaExpansion implements Expansion {
 
+    @Column(name="exp_name")
+    private String name;
+    
+    @Column(name="exp_abbr")
+    private String abbreviation;
+    
+    @Column(name="exp_logo")
+    private byte[] logo;
+
+    @Override
+    public String toString() {
+        return new ToStringCreator(this)
+            .append("name", name)
+            .append("abbr", abbreviation)
+            .toString();
+    }
+    
     @Override
     public String getName() {
-        // TODO Auto-generated method stub
-        return null;
+        return name;
     }
 
     @Override
     public void setName(String name) {
-        // TODO Auto-generated method stub
-        
+        this.name = name;
     }
 
     @Override
     public String getAbbreviation() {
-        // TODO Auto-generated method stub
-        return null;
+        return abbreviation;
     }
 
     @Override
     public void setAbbreviation(String abbreviation) {
-        // TODO Auto-generated method stub
-        
+        this.abbreviation = abbreviation;
     }
 
     @Override
     public byte[] getLogo() {
-        // TODO Auto-generated method stub
-        return null;
+        return logo;
     }
 
     @Override
     public void setLogo(byte[] logo) {
-        // TODO Auto-generated method stub
-        
+        this.logo = logo;
     }
 
 }

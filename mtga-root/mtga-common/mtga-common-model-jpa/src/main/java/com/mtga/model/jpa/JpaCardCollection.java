@@ -1,22 +1,18 @@
-package com.mtga.model.mongo;
+package com.mtga.model.jpa;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import com.mtga.model.CardCollection;
 import com.mtga.model.mtg.Card;
 
-public class MongoCardCollection implements CardCollection {
+public class JpaCardCollection implements CardCollection {
 
     private List<Card> cards;
 
-    public MongoCardCollection(){}
-    
-    public MongoCardCollection(Iterable<MongoCard> cards) {
-        this.cards = new ArrayList<Card>();
-        for(MongoCard mc : cards) {
-            this.cards.add(mc);
-        }
+    public JpaCardCollection(Collection<JpaCard> cards) {
+        this.cards = new ArrayList<Card>(cards);
     }
 
     @Override
@@ -30,5 +26,5 @@ public class MongoCardCollection implements CardCollection {
     public void setCards(List<Card> cards) {
         this.cards = cards;
     }
-    
+
 }

@@ -1,5 +1,7 @@
 package com.mtga.common.service;
 
+import java.util.Collection;
+
 import com.mtga.model.mtg.Card;
 
 public interface CardRepo {
@@ -8,7 +10,7 @@ public interface CardRepo {
     public Card create(String name);
     
     //R
-    public Iterable<Card> findAll();
+    public Collection<Card> findAll();
     public Iterable<Card> findByNameLike(String name);
     public byte[] getImage(String exp, String name);
 

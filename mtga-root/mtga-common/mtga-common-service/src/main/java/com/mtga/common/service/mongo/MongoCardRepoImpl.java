@@ -52,8 +52,8 @@ public class MongoCardRepoImpl implements CardRepo {
     }
     
     @Override
-    public Iterable<Card> findAll() {
-        return new ArrayList<Card>((Collection<MongoCard>) cards.findAll());
+    public Collection<Card> findAll() {
+        return new ArrayList<Card>((Collection<? extends Card>) cards.findAll());
     }
     
     @Override
@@ -65,7 +65,7 @@ public class MongoCardRepoImpl implements CardRepo {
     public byte[] getImage(String exp, String name) {
         MongoCard card = cards.getImage(exp, name);
         log.debug("Got card : {}", card);
-        return card.getImage().getImage();
+        return card.getImage().toBytes();
     }
     
 }

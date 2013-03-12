@@ -1,14 +1,17 @@
 package com.mtga.infra.jpa;
 
 import java.io.Serializable;
+import java.util.Collection;
 
-import org.springframework.context.annotation.Profile;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
-import com.mtga.common.utils.Profiles;
-import com.mtga.model.mtg.Card;
+import com.mtga.model.jpa.JpaCard;
 
-@Profile(Profiles.JPA)
-public interface JpaCardDao extends PagingAndSortingRepository<Card, Serializable> {
+/**
+ * @author mbmartinez
+ */
+public interface JpaCardDao extends PagingAndSortingRepository<JpaCard, Serializable>, CustomJpaCardDao {
+
+    Collection<JpaCard> findByNameLike(String name);
 
 }
