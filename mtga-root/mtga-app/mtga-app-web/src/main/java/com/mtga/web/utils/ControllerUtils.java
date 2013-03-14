@@ -4,6 +4,9 @@ import java.security.Principal;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+
 public class ControllerUtils {
 
     /**
@@ -16,6 +19,12 @@ public class ControllerUtils {
      */
     public static String name(HttpServletRequest request, Principal principal) {
         return principal != null ? principal.getName() : request.getHeader("x-forwarded-for") != null ? request.getHeader("x-forwarded-for") : request.getRemoteAddr();    
+    }
+
+    public static HttpHeaders imageHeader() {
+        final HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.IMAGE_PNG);
+        return headers;
     }
     
 }

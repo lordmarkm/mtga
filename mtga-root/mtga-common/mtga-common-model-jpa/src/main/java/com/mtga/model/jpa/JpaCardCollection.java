@@ -1,30 +1,51 @@
 package com.mtga.model.jpa;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 
 import com.mtga.model.CardCollection;
 import com.mtga.model.mtg.Card;
 
+@Entity
+@Table(name="cardcollections")
 public class JpaCardCollection implements CardCollection {
 
-    private List<Card> cards;
-
-    public JpaCardCollection(Collection<JpaCard> cards) {
-        this.cards = new ArrayList<Card>(cards);
-    }
+    @Id
+    @GeneratedValue
+    private long id;
+    
+    @ManyToMany
+    @JoinTable(
+      name="cardcollectionmappings",
+      joinColumns={@JoinColumn(name="collectionId")},
+      inverseJoinColumns={@JoinColumn(name="cardId")}
+    )
+    private List<JpaCard> cards;
 
     @Override
-    public List<Card> getCards() {
-        if(null == cards) {
-            cards = new ArrayList<Card>();
-        }
+    public List<JpaCard> getCards() {
         return cards;
     }
 
-    public void setCards(List<Card> cards) {
-        this.cards = cards;
+    @SuppressWarnings("unchecked")
+    @Override
+    public void setCards(List<? extends Card> cards) {
+        this.cards = (List<JpaCard>) cards;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
 }

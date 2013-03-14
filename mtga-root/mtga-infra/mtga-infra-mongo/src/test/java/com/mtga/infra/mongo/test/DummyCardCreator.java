@@ -4,7 +4,6 @@ package com.mtga.infra.mongo.test;
 import java.io.IOException;
 
 import org.apache.commons.io.IOUtils;
-import org.junit.Test;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 

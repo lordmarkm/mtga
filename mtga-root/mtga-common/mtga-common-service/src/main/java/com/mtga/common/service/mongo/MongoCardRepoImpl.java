@@ -22,7 +22,7 @@ import com.mtga.model.mtg.Card;
 @Service
 @Profile(Profiles.MONGO)
 @EnableMongoRepositories(basePackages = Repos.MONGO_REPOS_PKG)
-public class MongoCardRepoImpl implements CardRepo {
+public class MongoCardRepoImpl { //implements CardRepo {
 
     private static Logger log = LoggerFactory.getLogger(MongoCardRepoImpl.class);
     
@@ -34,34 +34,28 @@ public class MongoCardRepoImpl implements CardRepo {
         log.info("Loaded card repo: {}", cards);
     }
     
-    @Override
     public Card create(String name) {
         Card card = new MongoCard();
         card.setName(name);
         return card;
     }
     
-    @Override
     public Card update(Card card) {
         return cards.save((MongoCard)card);
     }
     
-    @Override
     public Collection<Card> findByNameLike(String name) {
         return new ArrayList<Card>(cards.findByNameLike(name));
     }
     
-    @Override
     public Collection<Card> findAll() {
         return new ArrayList<Card>((Collection<? extends Card>) cards.findAll());
     }
     
-    @Override
     public void delete(Card card) {
         cards.delete((MongoCard)card);
     }
 
-    @Override
     public byte[] getImage(String exp, String name) {
         MongoCard card = cards.getImage(exp, name);
         log.debug("Got card : {}", card);

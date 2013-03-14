@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +16,10 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.mtga.infra.jpa.config.JpaConfig;
 import com.mtga.model.jpa.JpaCard;
 import com.mtga.model.jpa.JpaCastingCost;
+import com.mtga.model.jpa.JpaExpansion;
 import com.mtga.model.mtg.Card;
 import com.mtga.model.mtg.CastingCost;
+import com.mtga.model.mtg.Expansion;
 
 /**
  * @author mbmartinez
@@ -32,9 +35,12 @@ public class InfraJpaTest {
 
     @Test
     public void retrieveAccount() {
-        insert();
+        Expansion tenth = create10th();
+        insert(tenth);
         Card wog = retrieve();
+        wog.setExpansion(tenth);
         delete(wog);
+        delete(tenth);
     }
     
     private Card wog() {
@@ -49,10 +55,23 @@ public class InfraJpaTest {
         return wog;
     }
     
-    private void insert() {
+    private Expansion create10th() {
+        Expansion e = new JpaExpansion();
+        e.setAbbreviation("10th");
+        e.setName("10th Edition");
+
+        Session session = sessionFactory.openSession(); // not part of a transaction, so we need to open a session manually
+        session.save(e);
+        
+        return e;
+    }
+    
+    private void insert(Expansion exp) {
         Card wog = wog();
+        wog.setExpansion(exp);
         
         Session session = sessionFactory.openSession(); // not part of a transaction, so we need to open a session manually
+        
         session.save(wog);
         session.flush();
         session.close();
@@ -72,10 +91,10 @@ public class InfraJpaTest {
         return card;
     }
     
-    private void delete(Card c) {
+    private void delete(Object o) {
         
         Session session = sessionFactory.openSession(); // not part of a transaction, so we need to open a session manually
-        session.delete(c);
+        session.delete(o);
         session.flush();
         session.close();
 

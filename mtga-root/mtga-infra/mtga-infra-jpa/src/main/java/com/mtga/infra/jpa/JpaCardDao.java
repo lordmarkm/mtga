@@ -1,8 +1,9 @@
 package com.mtga.infra.jpa;
 
 import java.io.Serializable;
-import java.util.Collection;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 import com.mtga.model.jpa.JpaCard;
@@ -12,6 +13,6 @@ import com.mtga.model.jpa.JpaCard;
  */
 public interface JpaCardDao extends PagingAndSortingRepository<JpaCard, Serializable>, CustomJpaCardDao {
 
-    Collection<JpaCard> findByNameLike(String name);
-
+    Page<JpaCard> findByNameLike(Pageable page, String name);
+    
 }

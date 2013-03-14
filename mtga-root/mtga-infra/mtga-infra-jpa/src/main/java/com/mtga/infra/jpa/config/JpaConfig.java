@@ -24,6 +24,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 import com.mtga.model.jpa.JpaCard;
+import com.mtga.model.jpa.JpaExpansion;
 
 /**
  * JPA (MySQL, Hibernate) config
@@ -102,6 +103,7 @@ public class JpaConfig {
     public SessionFactory sessionFactory() throws Exception {
         return new LocalSessionFactoryBuilder(dataSource())
             .addAnnotatedClasses(JpaCard.class)
+            .addAnnotatedClass(JpaExpansion.class)
             .buildSessionFactory();
     }
 

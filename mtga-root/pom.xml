@@ -7,8 +7,8 @@
 	<packaging>pom</packaging>
 	
 	<modules>
+	  <module>mtga-infra</module>
 		<module>mtga-common</module>
-		<module>mtga-infra</module>
     <module>mtga-app</module>
     <module>mtga-admin</module>
     <module>mtga-security</module>

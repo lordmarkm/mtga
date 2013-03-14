@@ -1,7 +1,5 @@
 package com.mtga.model.mongo;
 
-import javax.xml.bind.annotation.XmlTransient;
-
 import org.bson.types.ObjectId;
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.springframework.core.style.ToStringCreator;

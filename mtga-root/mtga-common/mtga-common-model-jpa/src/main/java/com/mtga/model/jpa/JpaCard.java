@@ -2,11 +2,15 @@ package com.mtga.model.jpa;
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
@@ -18,6 +22,7 @@ import com.mtga.model.mtg.CastingCost;
 import com.mtga.model.mtg.Expansion;
 
 @Entity
+@Table(name="cards")
 public class JpaCard implements Card {
     
     @Id
@@ -30,7 +35,8 @@ public class JpaCard implements Card {
     @Column(name="text")
     private String text;
     
-    @Embedded
+    @ManyToOne(optional=false, cascade=CascadeType.PERSIST)
+    @JoinColumn(name="exp")
     private JpaExpansion expansion;
     
     @Embedded

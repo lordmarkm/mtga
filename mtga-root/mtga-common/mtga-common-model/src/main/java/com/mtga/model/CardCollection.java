@@ -6,6 +6,7 @@ import com.mtga.model.mtg.Card;
 
 public interface CardCollection {
 
-    List<Card> getCards();
+    void setCards(List<? extends Card> cards);
+    List<? extends Card> getCards();
 
 }

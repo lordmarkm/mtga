@@ -1,15 +1,25 @@
 package com.mtga.model.jpa;
 
+import java.util.List;
+
 import javax.persistence.Column;
-import javax.persistence.Embeddable;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import org.springframework.core.style.ToStringCreator;
 
 import com.mtga.model.mtg.Expansion;
 
-@Embeddable
+@Entity
+@Table(name="expansions")
 public class JpaExpansion implements Expansion {
 
+    @Id
+    private long id;
+    
     @Column(name="exp_name")
     private String name;
     
@@ -19,6 +29,9 @@ public class JpaExpansion implements Expansion {
     @Column(name="exp_logo")
     private byte[] logo;
 
+    @OneToMany(mappedBy="expansion", fetch=FetchType.LAZY)
+    private List<JpaCard> cards;
+    
     @Override
     public String toString() {
         return new ToStringCreator(this)
@@ -55,6 +68,22 @@ public class JpaExpansion implements Expansion {
     @Override
     public void setLogo(byte[] logo) {
         this.logo = logo;
+    }
+
+    public List<JpaCard> getCards() {
+        return cards;
+    }
+
+    public void setCards(List<JpaCard> cards) {
+        this.cards = cards;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
 }
