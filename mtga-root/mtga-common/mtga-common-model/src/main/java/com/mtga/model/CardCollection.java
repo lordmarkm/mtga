@@ -6,6 +6,8 @@ import com.mtga.model.mtg.Card;
 
 public interface CardCollection {
 
+    void setPage(BinderPage page);
+    BinderPage getPage();
     void setCards(List<? extends Card> cards);
     List<? extends Card> getCards();
 

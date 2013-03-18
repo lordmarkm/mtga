@@ -1,5 +1,8 @@
 package com.mtga.model.jpa;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.CascadeType;
@@ -9,13 +12,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.springframework.core.style.ToStringCreator;
 
+import com.mtga.model.CardCollection;
 import com.mtga.model.MtgaImage;
 import com.mtga.model.mtg.Card;
 import com.mtga.model.mtg.CastingCost;
@@ -29,6 +35,9 @@ public class JpaCard implements Card {
     @GeneratedValue
     private long id;
     
+    @ManyToMany(mappedBy="cards")
+    private List<JpaCardCollection> collections;
+    
     @Column(name="name")
     private String name;
     
@@ -37,6 +46,7 @@ public class JpaCard implements Card {
     
     @ManyToOne(optional=false, cascade=CascadeType.PERSIST)
     @JoinColumn(name="exp")
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private JpaExpansion expansion;
     
     @Embedded
@@ -50,6 +60,12 @@ public class JpaCard implements Card {
     @Fetch(FetchMode.SELECT)
     private MtgaImage image;
 
+    public static JpaCard create() {
+        JpaCard card = new JpaCard();
+        card.collections = new ArrayList<JpaCardCollection>();
+        return card;
+    }
+    
     @Override
     public String toString() {
         return new ToStringCreator(this)
@@ -105,6 +121,18 @@ public class JpaCard implements Card {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public List<JpaCardCollection> getCollections() {
+        return collections;
+    }
+
+    public void setCollections(List<JpaCardCollection> collections) {
+        this.collections = collections;
+    }
+    
+    public void addToCollection(CardCollection collection) {
+        this.collections.add((JpaCardCollection) collection);
     }
     
 }

@@ -1,5 +1,6 @@
 package com.mtga.model.jpa;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -11,9 +12,13 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.mtga.model.Binder;
+import com.mtga.model.BinderPage;
+import com.mtga.model.mtg.MtgaPlayer;
+
 @Entity
 @Table(name="binders")
-public class JpaBinder {
+public class JpaBinder implements Binder {
 
     @Id
     @GeneratedValue
@@ -26,6 +31,12 @@ public class JpaBinder {
     @OneToMany(cascade=CascadeType.ALL, mappedBy="binder")
     private List<JpaBinderPage> pages;
 
+    public static JpaBinder create() {
+        JpaBinder binder = new JpaBinder();
+        binder.pages = new ArrayList<JpaBinderPage>();
+        return binder;
+    }
+    
     public long getId() {
         return id;
     }
@@ -34,20 +45,26 @@ public class JpaBinder {
         this.id = id;
     }
 
-    public JpaMtgaPlayer getOwner() {
+    public MtgaPlayer getOwner() {
         return owner;
     }
 
-    public void setOwner(JpaMtgaPlayer owner) {
-        this.owner = owner;
-    }
-
-    public List<JpaBinderPage> getPages() {
-        return pages;
+    public void setOwner(MtgaPlayer owner) {
+        this.owner = (JpaMtgaPlayer) owner;
     }
 
     public void setPages(List<JpaBinderPage> pages) {
         this.pages = pages;
+    }
+
+    @Override
+    public void addPage(BinderPage binderPage) {
+        pages.add((JpaBinderPage) binderPage);
+    }
+
+    @Override
+    public List<? extends BinderPage> getPages() {
+       return pages;
     }
 
 }

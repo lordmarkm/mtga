@@ -23,8 +23,12 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
+import com.mtga.model.jpa.JpaBinder;
+import com.mtga.model.jpa.JpaBinderPage;
 import com.mtga.model.jpa.JpaCard;
+import com.mtga.model.jpa.JpaCardCollection;
 import com.mtga.model.jpa.JpaExpansion;
+import com.mtga.model.jpa.JpaMtgaPlayer;
 
 /**
  * JPA (MySQL, Hibernate) config
@@ -103,7 +107,11 @@ public class JpaConfig {
     public SessionFactory sessionFactory() throws Exception {
         return new LocalSessionFactoryBuilder(dataSource())
             .addAnnotatedClasses(JpaCard.class)
+            .addAnnotatedClass(JpaCardCollection.class)
+            .addAnnotatedClass(JpaBinderPage.class)
+            .addAnnotatedClass(JpaBinder.class)
             .addAnnotatedClass(JpaExpansion.class)
+            .addAnnotatedClass(JpaMtgaPlayer.class)
             .buildSessionFactory();
     }
 
