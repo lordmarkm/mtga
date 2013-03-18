@@ -37,7 +37,6 @@ public class JpaCardCollection implements CardCollection {
       joinColumns={@JoinColumn(name="collectionId")},
       inverseJoinColumns={@JoinColumn(name="cardId")}
     )
-    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     private List<JpaCard> cards;
 
     

@@ -1,15 +1,16 @@
-package com.mtga.infra.jpa;
+package com.mtga.infra.jpa.custom.impl;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.mtga.infra.jpa.custom.CustomJpaCardDao;
 import com.mtga.model.jpa.JpaCard;
 import com.mtga.model.mtg.Card;
 
 @Transactional
-public class CustomCardDaoImpl implements CustomJpaCardDao {
+public class CustomJpaCardDaoImpl implements CustomJpaCardDao {
 
     @Autowired
     private SessionFactory sessions;

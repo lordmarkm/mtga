@@ -6,6 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
+import com.mtga.infra.jpa.custom.CustomJpaCardDao;
 import com.mtga.model.jpa.JpaCard;
 
 /**

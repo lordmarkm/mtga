@@ -1,4 +1,4 @@
-package com.mtga.infra.jpa.config;
+package com.mtga.infra.jpa.test;
 
 import java.util.Properties;
 
@@ -31,16 +31,16 @@ import com.mtga.model.jpa.JpaExpansion;
 import com.mtga.model.jpa.JpaMtgaPlayer;
 
 /**
- * JPA (MySQL, Hibernate) config
+ * In-memory Hibernate + HSQL config for testing
  * @author mbmartinez
  */
 
 @Configuration
-@PropertySource("classpath:${env:dev}.properties")
+@PropertySource("classpath:${spring.profiles.active}.properties")
 @EnableJpaRepositories(basePackages="com.mtga.infra.jpa")
 @EnableTransactionManagement
-public class JpaConfig {
-
+public class InMemoryJpaConfig {
+    
     @Autowired
     private Environment env;
     
@@ -114,5 +114,4 @@ public class JpaConfig {
             .addAnnotatedClass(JpaMtgaPlayer.class)
             .buildSessionFactory();
     }
-
 }

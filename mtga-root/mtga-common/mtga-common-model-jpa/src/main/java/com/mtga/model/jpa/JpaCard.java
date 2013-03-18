@@ -16,7 +16,6 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.springframework.core.style.ToStringCreator;
@@ -44,9 +43,8 @@ public class JpaCard implements Card {
     @Column(name="text")
     private String text;
     
-    @ManyToOne(optional=false, cascade=CascadeType.PERSIST)
+    @ManyToOne(cascade=CascadeType.PERSIST)
     @JoinColumn(name="exp")
-    @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private JpaExpansion expansion;
     
     @Embedded

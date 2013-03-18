@@ -45,18 +45,23 @@
 			<groupId>c3p0</groupId>
 			<artifactId>c3p0</artifactId>
 		</dependency>
-    
-    <!-- LOGGING -->
-    <dependency>
-      <groupId>ch.qos.logback</groupId>
-      <artifactId>logback-classic</artifactId>
-    </dependency>
-            
-    <!-- TEST -->
-    <dependency>
-      <groupId>mtga</groupId>
-      <artifactId>mtga-common-test</artifactId>
-    </dependency>        
+
+		<!-- LOGGING -->
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+		</dependency>
+
+		<!-- TEST -->
+		<dependency>
+			<groupId>mtga</groupId>
+			<artifactId>mtga-common-test</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.hsqldb</groupId>
+			<artifactId>hsqldb</artifactId>
+			<version>2.2.8</version>
+		</dependency>
 	</dependencies>
 
 </project>

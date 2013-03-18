@@ -1,16 +1,21 @@
 package com.mtga.infra.jpa.test;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Restrictions;
+import static org.junit.Assert.*;
+
+import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.mtga.infra.jpa.JpaCardDao;
+import com.mtga.infra.jpa.JpaExpansionDao;
+import com.mtga.infra.jpa.JpaPlayerDao;
 import com.mtga.infra.jpa.config.JpaConfig;
 import com.mtga.model.Binder;
 import com.mtga.model.BinderPage;
@@ -24,19 +29,38 @@ import com.mtga.model.jpa.JpaExpansion;
 import com.mtga.model.jpa.JpaMtgaPlayer;
 import com.mtga.model.mtg.CastingCost;
 import com.mtga.model.mtg.Expansion;
-import com.mtga.model.mtg.MtgaPlayer;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {JpaConfig.class})
-@ActiveProfiles("jpa")
+@ActiveProfiles("test")
+@PropertySource("classpath:test.properties")
 public class JpaBinderTest {
     
     @Autowired
-    private SessionFactory sessions;
+    private JpaPlayerDao players;
+
+    @Autowired
+    private JpaExpansionDao expansions;
+    
+    @Autowired
+    private JpaCardDao cards;
     
     @Before
-    public void drop() {
+    public void setup() {
+        //this call should cascade to delete all binders, binder pages, and card collections
+        players.deleteAll();
+        cards.deleteAll();
+        expansions.deleteAll();
         
+        JpaExpansion alpha = new JpaExpansion();
+        alpha.setAbbreviation("A");
+        alpha.setName("Alpha");
+        expansions.save(alpha);
+        
+        JpaExpansion tenth = new JpaExpansion();
+        tenth.setAbbreviation("10th");
+        tenth.setName("10th Edition");
+        expansions.save(tenth);
     }
     
     @Test
@@ -61,27 +85,24 @@ public class JpaBinderTest {
         binder.addPage(page);
         page.setBinder(binder);
         
-        MtgaPlayer player = new JpaMtgaPlayer();
+        JpaMtgaPlayer player = new JpaMtgaPlayer();
         player.setBinder(binder);
         binder.setOwner(player);
 
-        Session session = sessions.openSession(); // not part of a transaction, so we need to open a session manually
-        session.save(player);
+        System.out.println("Exp values prior to save: " + wog.getExpansion() + " " + lion.getExpansion());
         
-        JpaCard woog = (JpaCard) session.createCriteria(JpaCard.class)
-            .add(Restrictions.eq("name", "Wrath of God"))
-            .uniqueResult();
+        players.save(player);
         
-        System.out.println(woog.getCollections().size());
+        List<JpaCard> allcards = (List<JpaCard>) cards.findAll();
+        assertEquals(2, allcards.size());
     }
     
     private JpaCard wog() {
         CastingCost cc = new JpaCastingCost();
         cc.setString("2WW");
         
-        Expansion exp = new JpaExpansion();
-        exp.setAbbreviation("10th");
-        exp.setName("10th Edition");
+        Expansion exp = expansions.findByAbbr("10th");
+        assertNotNull(exp);
         
         JpaCard wog = JpaCard.create();
         wog.setExpansion(exp);
@@ -96,9 +117,8 @@ public class JpaBinderTest {
         CastingCost cc = new JpaCastingCost();
         cc.setString("W");
         
-        Expansion exp = new JpaExpansion();
-        exp.setAbbreviation("A");
-        exp.setName("Alpha");
+        Expansion exp = expansions.findByAbbr("A");
+        assertNotNull(exp);
         
         JpaCard lion = JpaCard.create();
         lion.setExpansion(exp);

@@ -1,4 +1,4 @@
-package com.mtga.infra.jpa;
+package com.mtga.infra.jpa.custom;
 
 import com.mtga.model.jpa.JpaCard;
 
