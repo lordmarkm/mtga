@@ -2,13 +2,16 @@ package com.mtga.model.jpa;
 
 import java.util.List;
 
+import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.CascadeType;
 
 import org.springframework.core.style.ToStringCreator;
 
@@ -22,16 +25,17 @@ public class JpaExpansion implements Expansion {
     @GeneratedValue
     private long id;
     
-    @Column(name="exp_name")
+    @Column(name="name")
     private String name;
     
-    @Column(name="exp_abbr")
+    @Column(name="abbr")
     private String abbreviation;
     
-    @Column(name="exp_logo")
+    @Column(name="logo")
+    @Lob @Basic(fetch=FetchType.EAGER)
     private byte[] logo;
 
-    @OneToMany(mappedBy="expansion", fetch=FetchType.LAZY)
+    @OneToMany(cascade=CascadeType.ALL, mappedBy="expansion", fetch=FetchType.LAZY)
     private List<JpaCard> cards;
     
     @Override

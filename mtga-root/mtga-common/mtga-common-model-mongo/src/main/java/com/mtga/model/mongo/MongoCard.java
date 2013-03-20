@@ -93,16 +93,12 @@ public class MongoCard implements Card {
         this.text = text;
     }
 
-    @Override
     @JsonIgnore
-
     public void setExpansion(Expansion expansion) {
         this.expansion = (MongoExpansion) expansion;
     }
 
-    @Override
     @JsonIgnore
-
     public void setCastingCost(CastingCost castingCost) {
         this.castingCost = (MongoCastingCost) castingCost;
     }

@@ -1,6 +1,7 @@
 package com.mtga.infra.jpa.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import java.util.List;
 
@@ -19,7 +20,6 @@ import com.mtga.infra.jpa.JpaPlayerDao;
 import com.mtga.infra.jpa.config.JpaConfig;
 import com.mtga.model.Binder;
 import com.mtga.model.BinderPage;
-import com.mtga.model.CardCollection;
 import com.mtga.model.jpa.JpaBinder;
 import com.mtga.model.jpa.JpaBinderPage;
 import com.mtga.model.jpa.JpaCard;
@@ -27,13 +27,11 @@ import com.mtga.model.jpa.JpaCardCollection;
 import com.mtga.model.jpa.JpaCastingCost;
 import com.mtga.model.jpa.JpaExpansion;
 import com.mtga.model.jpa.JpaMtgaPlayer;
-import com.mtga.model.mtg.CastingCost;
-import com.mtga.model.mtg.Expansion;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {JpaConfig.class})
-@ActiveProfiles("test")
-@PropertySource("classpath:test.properties")
+@ActiveProfiles("jpa")
+@PropertySource("classpath:dev.properties")
 public class JpaBinderTest {
     
     @Autowired
@@ -63,25 +61,36 @@ public class JpaBinderTest {
         expansions.save(tenth);
     }
     
+//    @Test
+    public void savecard() {
+        JpaCard wog = wog();
+        cards.save(wog);
+        
+        JpaCard card = cards.findByName("Wrath of God");
+        System.out.println(card);
+    }
+    
     @Test
     public void testBinders() {
         JpaCard wog = wog();
         JpaCard lion = lion();
+        wog = cards.save(wog);
+        lion = cards.save(lion);
         
-        BinderPage page = JpaBinderPage.create();
+        JpaBinderPage page = JpaBinderPage.create();
         
-        CardCollection coll1 = JpaCardCollection.create(wog);
+        JpaCardCollection coll1 = JpaCardCollection.create(wog);
         wog.addToCollection(coll1);
         coll1.setPage(page);
         
-        CardCollection coll2 = JpaCardCollection.create(lion, lion);
+        JpaCardCollection coll2 = JpaCardCollection.create(lion, lion);
         lion.addToCollection(coll2);
         coll2.setPage(page);
         
         page.addCards(0, coll1);   //1x wog
         page.addCards(1, coll2); //2x lion
         
-        Binder binder = JpaBinder.create();
+        JpaBinder binder = JpaBinder.create();
         binder.addPage(page);
         page.setBinder(binder);
         
@@ -98,11 +107,12 @@ public class JpaBinderTest {
     }
     
     private JpaCard wog() {
-        CastingCost cc = new JpaCastingCost();
+        JpaCastingCost cc = new JpaCastingCost();
         cc.setString("2WW");
         
-        Expansion exp = expansions.findByAbbr("10th");
+        JpaExpansion exp = expansions.findWithCards("10th");
         assertNotNull(exp);
+        System.out.println("Found exp: " + exp);
         
         JpaCard wog = JpaCard.create();
         wog.setExpansion(exp);
@@ -110,20 +120,26 @@ public class JpaBinderTest {
         wog.setText("Destroy all creatures. They can't be regenerated.");
         wog.setCastingCost(cc);
         
+        exp.getCards().add(wog);
+        
         return wog;
     }
     
     private JpaCard lion() {
-        CastingCost cc = new JpaCastingCost();
+        JpaCastingCost cc = new JpaCastingCost();
         cc.setString("W");
         
-        Expansion exp = expansions.findByAbbr("A");
+        //JpaExpansion exp = expansions.findByAbbr("A");
+        JpaExpansion exp = expansions.findWithCards("A");
         assertNotNull(exp);
+        System.out.println("Found exp: " + exp);
         
         JpaCard lion = JpaCard.create();
         lion.setExpansion(exp);
         lion.setName("Savannah Lions");
         lion.setCastingCost(cc);
+        
+        exp.getCards().add(lion);
         
         return lion;
     }

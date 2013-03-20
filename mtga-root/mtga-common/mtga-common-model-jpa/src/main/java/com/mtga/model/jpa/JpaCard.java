@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -20,10 +19,8 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.springframework.core.style.ToStringCreator;
 
-import com.mtga.model.CardCollection;
 import com.mtga.model.MtgaImage;
 import com.mtga.model.mtg.Card;
-import com.mtga.model.mtg.CastingCost;
 import com.mtga.model.mtg.Expansion;
 
 @Entity
@@ -43,7 +40,7 @@ public class JpaCard implements Card {
     @Column(name="text")
     private String text;
     
-    @ManyToOne(cascade=CascadeType.PERSIST)
+    @ManyToOne
     @JoinColumn(name="exp")
     private JpaExpansion expansion;
     
@@ -89,20 +86,20 @@ public class JpaCard implements Card {
         this.name = name;
     }
 
-    public JpaExpansion getExpansion() {
+    public Expansion getExpansion() {
         return expansion;
     }
 
-    public void setExpansion(Expansion expansion) {
-        this.expansion = (JpaExpansion) expansion;
+    public void setExpansion(JpaExpansion expansion) {
+        this.expansion = expansion;
     }
 
     public JpaCastingCost getCastingCost() {
         return castingCost;
     }
 
-    public void setCastingCost(CastingCost castingCost) {
-        this.castingCost = (JpaCastingCost) castingCost;
+    public void setCastingCost(JpaCastingCost castingCost) {
+        this.castingCost = castingCost;
     }
 
     public MtgaImage getImage() {
@@ -129,8 +126,8 @@ public class JpaCard implements Card {
         this.collections = collections;
     }
     
-    public void addToCollection(CardCollection collection) {
-        this.collections.add((JpaCardCollection) collection);
+    public void addToCollection(JpaCardCollection collection) {
+        this.collections.add(collection);
     }
     
 }

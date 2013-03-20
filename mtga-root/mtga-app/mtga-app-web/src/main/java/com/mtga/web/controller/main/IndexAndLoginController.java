@@ -15,9 +15,9 @@ import com.mtga.web.utils.ControllerUtils;
 
 @Controller
 @RequestMapping("/")
-public class IndexController {
+public class IndexAndLoginController {
 
-	private static Logger log = LoggerFactory.getLogger(IndexController.class);
+	private static Logger log = LoggerFactory.getLogger(IndexAndLoginController.class);
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView index(Principal principal, HttpServletRequest request) {
@@ -29,5 +29,17 @@ public class IndexController {
 		
 		return m;
 	}
+	
+    @RequestMapping("/login/")
+    public String sociallogin(HttpServletRequest request) {
+        String referrer = request.getHeader("referer");
+        log.debug("Referrer: {}", referrer);
+        
+        if(null != referrer) {
+            request.getSession(true).setAttribute("originalUrl", referrer);
+        }
+        
+        return "auth/login";
+    }
 	
 }

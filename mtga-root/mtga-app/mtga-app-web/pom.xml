@@ -23,6 +23,10 @@
 			<groupId>mtga</groupId>
 			<artifactId>mtga-admin-service</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>mtga</groupId>
+			<artifactId>mtga-security-services</artifactId>
+		</dependency>
 
 		<!-- SPRING -->
 		<dependency>
@@ -42,7 +46,25 @@
 			<artifactId>spring-oxm-tiger</artifactId>
 			<version>1.5.4</version>
 		</dependency>
-		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+		</dependency>
+
+		<!-- SPRING SECURITY -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-taglibs</artifactId>
+		</dependency>
+
 		<!-- JACKSON -->
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>

@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.CascadeType;
@@ -22,17 +23,20 @@ public class JpaMtgaPlayer implements MtgaPlayer {
     @GeneratedValue
     private long id;
     
+    @OneToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name="userId")
+    private User user;
+    
     @OneToOne(mappedBy="owner", cascade=CascadeType.ALL)
     private JpaBinder binder;
     
     @Override
     public Binder getBinder() {
-        return (Binder) binder;
+        return binder;
     }
 
-    @Override
-    public void setBinder(Binder binder) {
-        this.binder = (JpaBinder) binder;
+    public void setBinder(JpaBinder binder) {
+        this.binder = binder;
     }
 
     @Override
@@ -77,6 +81,14 @@ public class JpaMtgaPlayer implements MtgaPlayer {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
 }

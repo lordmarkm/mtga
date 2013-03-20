@@ -5,10 +5,13 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  
   <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
   <link href="<@spring.url '/css/application.css' />" rel="stylesheet" />
   
   <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+  <script src="<@spring.url '/javascript/browse/browse.js' />" ></script>
 </head>
 
 <body>
@@ -45,7 +48,7 @@
               </td>
               <td>
                 <#if card.expansion??>
-                  <#if card.expansion.logo>
+                  <#if card.expansion.logo??>
                     <img src="<@spring.url '/logo/${card.expansion.abbreviation}' />" />
                   <#else>
                     ${card.expansion.abbreviation}
@@ -54,8 +57,8 @@
               </td>
               
               <td>
-                <button class="btn" title="<@spring.message 'browse.find-in-binders' />"><i class="icon-search"></i></button>
-                <button class="btn" title="<@spring.message 'browse.add-to-binder' />"><i class="icon-book"></i></button>
+                <a class="btn" title="<@spring.message 'browse.find-in-binders' />"><i class="icon-search"></i></a>
+                <a href="#addToBinderModal" class="btn" title="<@spring.message 'browse.add-to-binder' />" role="button" data-toggle="modal" ><i class="icon-book"></i></a>
               </td>
             </tr>
           </#list>
@@ -65,5 +68,12 @@
     </div>
   
   </div>
+ 
+ <!-- Modal for user to search for this card in available binders -->
+ <#include "../modals/searchinbinders.ftl">
+               
+ <!-- Modal for user to add this card to his binder -->
+ <#include "../modals/addtobinder.ftl"> 
+  
  </body>
 </html>

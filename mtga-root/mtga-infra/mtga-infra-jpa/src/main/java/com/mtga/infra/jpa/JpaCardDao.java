@@ -15,5 +15,7 @@ import com.mtga.model.jpa.JpaCard;
 public interface JpaCardDao extends PagingAndSortingRepository<JpaCard, Serializable>, CustomJpaCardDao {
 
     Page<JpaCard> findByNameLike(Pageable page, String name);
+
+    JpaCard findByName(String string);
     
 }

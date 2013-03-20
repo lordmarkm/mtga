@@ -29,6 +29,7 @@ import com.mtga.model.jpa.JpaCard;
 import com.mtga.model.jpa.JpaCardCollection;
 import com.mtga.model.jpa.JpaExpansion;
 import com.mtga.model.jpa.JpaMtgaPlayer;
+import com.mtga.model.jpa.User;
 
 /**
  * JPA (MySQL, Hibernate) config
@@ -36,7 +37,7 @@ import com.mtga.model.jpa.JpaMtgaPlayer;
  */
 
 @Configuration
-@PropertySource("classpath:${env:dev}.properties")
+@PropertySource("classpath:dev.properties")
 @EnableJpaRepositories(basePackages="com.mtga.infra.jpa")
 @EnableTransactionManagement
 public class JpaConfig {
@@ -112,6 +113,7 @@ public class JpaConfig {
             .addAnnotatedClass(JpaBinder.class)
             .addAnnotatedClass(JpaExpansion.class)
             .addAnnotatedClass(JpaMtgaPlayer.class)
+            .addAnnotatedClass(User.class)
             .buildSessionFactory();
     }
 

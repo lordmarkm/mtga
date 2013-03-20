@@ -29,7 +29,7 @@ public class DummyCardCreator {
         MtgaImage img = new MongoMtgaImage();
         img.setImage(loadWogImage());
         
-        Card card = new MongoCard();
+        MongoCard card = new MongoCard();
         card.setName("Wrath of God");
         card.setText("Destroy all creatures. They can't be regenerated.");
         card.setCastingCost(cc);

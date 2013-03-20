@@ -35,7 +35,7 @@ public class MongoCardRepoImpl { //implements CardRepo {
     }
     
     public Card create(String name) {
-        Card card = new MongoCard();
+        MongoCard card = new MongoCard();
         card.setName(name);
         return card;
     }

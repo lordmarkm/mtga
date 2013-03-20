@@ -1,6 +1,7 @@
 package com.mtga.model.jpa;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -11,13 +12,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.CascadeType;
 
-import org.hibernate.annotations.Cascade;
-
-import com.mtga.model.BinderPage;
 import com.mtga.model.CardCollection;
-import com.mtga.model.mtg.Card;
 
 @Entity
 @Table(name="cardcollections")
@@ -31,7 +27,7 @@ public class JpaCardCollection implements CardCollection {
     @JoinColumn(name="pageId")
     private JpaBinderPage page;
     
-    @ManyToMany(cascade=CascadeType.PERSIST)
+    @ManyToMany
     @JoinTable(
       name="cardcollectionmappings",
       joinColumns={@JoinColumn(name="collectionId")},
@@ -40,12 +36,9 @@ public class JpaCardCollection implements CardCollection {
     private List<JpaCard> cards;
 
     
-    public static JpaCardCollection create(Card... cards) {
+    public static JpaCardCollection create(JpaCard... cards) {
         JpaCardCollection collection = new JpaCardCollection();
-        collection.cards = new ArrayList<JpaCard>();
-        for(Card card : cards) {
-            collection.cards.add((JpaCard) card);
-        }
+        collection.cards = Arrays.asList(cards);
         return collection;
     }
     
@@ -57,10 +50,8 @@ public class JpaCardCollection implements CardCollection {
         return cards;
     }
 
-    @SuppressWarnings("unchecked")
-    @Override
-    public void setCards(List<? extends Card> cards) {
-        this.cards = (List<JpaCard>) cards;
+    public void setCards(List<JpaCard> cards) {
+        this.cards = cards;
     }
 
     public long getId() {
@@ -75,9 +66,8 @@ public class JpaCardCollection implements CardCollection {
         return page;
     }
 
-    @Override
-    public void setPage(BinderPage page) {
-        this.page = (JpaBinderPage) page;
+    public void setPage(JpaBinderPage page) {
+        this.page = page;
     }
 
 }
